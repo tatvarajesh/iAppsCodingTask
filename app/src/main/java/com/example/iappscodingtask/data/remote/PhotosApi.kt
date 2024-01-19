@@ -7,7 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface PhotosApi {
-
     @GET(api_get_photos)
     suspend fun getPhotos(
         @Query(param_format) format: String = "json",

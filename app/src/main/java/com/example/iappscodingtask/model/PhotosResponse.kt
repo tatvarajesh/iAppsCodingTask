@@ -28,7 +28,6 @@ data class Media(
     @SerializedName("m") val m: String? = null
 )
 
-
 fun Items.toItemModel() = PhotoEntity(
     title = this.title ?: "",
     link = this.link ?: "",

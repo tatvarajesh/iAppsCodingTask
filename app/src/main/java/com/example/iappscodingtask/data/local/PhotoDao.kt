@@ -10,7 +10,7 @@ interface PhotoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPhoto(photo: PhotoEntity)
 
-    @Query("SELECT * FROM photoentity ORDER BY published DESC")
+    @Query("SELECT * FROM photoentity")
     suspend fun getAllPhoto(): List<PhotoEntity>
 
     @Query("SELECT * FROM photoentity where title = :title And published = :published Limit 1")

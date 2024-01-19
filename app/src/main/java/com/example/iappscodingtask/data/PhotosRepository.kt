@@ -4,13 +4,11 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.util.Log
 import com.example.iappscodingtask.base.BaseApiResponse
 import com.example.iappscodingtask.common.NetworkResult
 import com.example.iappscodingtask.data.local.LocalDataSource
 import com.example.iappscodingtask.data.local.toItemModel
 import com.example.iappscodingtask.data.remote.RemoteDataSource
-import com.example.iappscodingtask.model.Items
 import com.example.iappscodingtask.model.PhotosResponse
 import com.example.iappscodingtask.model.toPhotoEntityModelList
 import dagger.hilt.android.scopes.ActivityRetainedScoped
@@ -35,33 +33,28 @@ class PhotosRepository @Inject constructor(
             }
             if (resp is NetworkResult.Success) {
                 resp.data?.let {
-                    it.items?.toPhotoEntityModelList()?.let { allItems ->
-                        allItems.forEach { photoEnt ->
-                            // check already exists in DB or not
-                            if (localDataSource.getPhoto(
-                                    photoEnt.title, photoEnt.published
-                                ) == null
-                            ) {
-                                localDataSource.insertPhoto(
-                                    photoEnt
-                                )
-                            } else {
-                                Log.e("!_@_@_", "---already exist-----")
-                            }
+                    it.items?.toPhotoEntityModelList()?.forEach { photo ->
+                        // check already exists in DB or not
+                        if (localDataSource.getPhoto(
+                                photo.title, photo.published
+                            ) == null
+                        ) {
+                            localDataSource.insertPhoto(
+                                photo
+                            )
                         }
                     }
                 }
             }
         }
         // fetch all the data from local db
-        val localList: List<Items> = localDataSource.getAllPhoto().map {
-            it.toItemModel()
-        }
         return flow {
             emit(
                 NetworkResult.Success(
                     PhotosResponse(
-                        items = localList
+                        items = localDataSource.getAllPhoto().map {
+                            it.toItemModel()
+                        }
                     )
                 )
             )

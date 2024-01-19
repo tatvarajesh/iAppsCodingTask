@@ -36,11 +36,9 @@ class PhotoAdapter : ListAdapter<Items, PhotoAdapter.DataViewHolder>(Companion) 
     inner class DataViewHolder(private val binding: ItemPhotosBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
-            Log.e("!_@_Date_", getItem(adapterPosition).published.toString())
             binding.items = getItem(adapterPosition)
             binding.root.setOnClickListener {
                 try {
-                    Log.e("!_@_@", getItem(adapterPosition).link.toString())
                     it.context.startActivity(
                         Intent(
                             Intent.ACTION_VIEW, Uri.parse(getItem(adapterPosition).link)

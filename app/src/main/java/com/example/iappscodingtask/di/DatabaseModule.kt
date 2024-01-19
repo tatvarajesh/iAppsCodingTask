@@ -12,14 +12,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
-
+object DatabaseModule {
     @Singleton
     @Provides
     fun provideRoomDatabase(@ApplicationContext context: Context) =
         Room.databaseBuilder(context, AppDatabase::class.java, "photos_db")
-            .fallbackToDestructiveMigration()
-            .build()
+            .fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides

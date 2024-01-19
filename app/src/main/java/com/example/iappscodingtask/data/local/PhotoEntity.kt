@@ -27,7 +27,6 @@ data class PhotoEntity(
     val media: String
 )
 
-
 fun PhotoEntity.toItemModel() = Items(
     title = title,
     link = link,
