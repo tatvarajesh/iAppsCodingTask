@@ -1,4 +1,4 @@
-package com.example.iappscodingtask.data
+package com.example.iappscodingtask.data.remote
 
 import com.example.iappscodingtask.common.*
 import com.example.iappscodingtask.model.PhotosResponse
@@ -12,7 +12,7 @@ interface PhotosApi {
     suspend fun getPhotos(
         @Query(param_format) format: String = "json",
         @Query(param_tags) tag: String = "cat",
-        @Query(param_nojsoncallback) nojsoncallback: Int = 1
+        @Query(param_nojsoncallback) noJsonCallBack: Int = 1
     ): Response<PhotosResponse>
 
 }

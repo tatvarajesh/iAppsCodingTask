@@ -1,5 +1,6 @@
 package com.example.iappscodingtask.model
 
+import com.example.iappscodingtask.data.local.PhotoEntity
 import com.google.gson.annotations.SerializedName
 
 data class PhotosResponse(
@@ -26,3 +27,18 @@ data class Items(
 data class Media(
     @SerializedName("m") val m: String? = null
 )
+
+
+fun Items.toItemModel() = PhotoEntity(
+    title = this.title ?: "",
+    link = this.link ?: "",
+    media = this.media?.m ?: "",
+    description = this.description ?: "",
+    published = this.published ?: ""
+)
+
+fun List<Items>.toPhotoEntityModelList(): List<PhotoEntity> {
+    return this.map {
+        it.toItemModel()
+    }
+}

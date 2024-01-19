@@ -1,7 +1,7 @@
 package com.example.iappscodingtask.di
 
 import com.example.iappscodingtask.common.BASE_URL
-import com.example.iappscodingtask.data.PhotosApi
+import com.example.iappscodingtask.data.remote.PhotosApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

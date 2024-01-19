@@ -39,7 +39,12 @@ class PhotosActivity : AppCompatActivity() {
                 when (response) {
                     is NetworkResult.Success -> {
                         response.data?.let {
-                            dataAdapter.submitList(it.items)
+                            if (it.items.isNullOrEmpty()) {
+                                activityPhotosBinding.tvEmptyList.visibility = View.VISIBLE
+                            } else {
+                                dataAdapter.submitList(it.items)
+                                activityPhotosBinding.tvEmptyList.visibility = View.GONE
+                            }
                         }
                         activityPhotosBinding.progressBar.visibility = View.GONE
                     }

@@ -1,4 +1,4 @@
-package com.example.iappscodingtask.data
+package com.example.iappscodingtask.data.remote
 
 import javax.inject.Inject
 
