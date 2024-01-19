@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">iAppsCodingTask</string>
+    <string name="empty_list">There is no photos available</string>
 </resources>
